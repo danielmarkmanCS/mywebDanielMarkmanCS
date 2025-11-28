@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>דניאל | סייבר ואבטחת מידע</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* --------------------
+   עיצוב בסיס
+--------------------- */
+body {
+    margin: 0;
+    font-family: "Assistant", Arial, sans-serif;
+    background: #000;
+    color: #e4e4e4;
+    overflow-x: hidden;
+}
+
+/* מטריקס ברקע */
+#matrix {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: -2;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+}
+
+/* חלקיקים זוהרים */
+.particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: #14ffec;
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: float 8s infinite linear;
+}
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+h1 {
+    font-size: 3.4rem;
+    color: #14ffec;
+    text-shadow: 0 0 25px #14ffec;
+}
+.typing {
+    font-size: 1.3rem;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.links a {
+    color: #14ffec;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.links a:hover {
+    text-shadow: 0 0 12px #14ffec;
+}
+
+/* כישורי סייבר */
+#skills {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #14ffec;
+    box-shadow: 0 0 20px #14ffec33;
+    border-radius: 12px;
+}
+
+.skill {
+    margin: 12px 0;
+    font-size: 1.2rem;
+}
+.skill span {
+    color: #14ffec;
+}
+
+/* קונסולת האקר */
+#terminal {
+    width: 90%;
+    max-width: 800px;
+    height: 280px;
+    background: #020202;
+    border: 1px solid #14ffec;
+    margin: 50px auto;
+    padding: 10px;
+    overflow-y: auto;
+    color: #14ffec;
+    font-family: Consolas, monospace;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #14ffec55;
+}
+#terminal-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #0affd1;
+    font-family: Consolas;
+    outline: none;
+}
+
+/* טופס */
+.contact {
+    width: 90%;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #14ffec;
+    border-radius: 12px;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #0f0f17;
+    border: 1px solid #14ffec;
+    color: #e4e4e4;
+    border-radius: 5px;
+}
+
+.contact button {
+    width: 100%;
+    padding: 12px;
+    background: #14ffec;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+/* כפתור קו״ח */
+#cv {
+    text-align: center;
+    margin-top: 15px;
+}
+#cv a {
+    color: #fff;
+    background: #14ffec33;
+    padding: 10px 20px;
+    border: 1px solid #14ffec;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#cv a:hover {
+    background: #14ffec;
+    color: #000;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- חלקיקים -->
+<script>
+for(let i = 0; i < 40; i++){
+    let p = document.createElement("div");
+    p.classList.add("particle");
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.animationDuration = 4 + Math.random()*6 + "s";
+    document.body.appendChild(p);
+}
+</script>
+
+<header>
+    <h1>דניאל — סייבר ואבטחת מידע</h1>
+    <div class="typing" id="typing"></div>
+
+    <div class="links">
+        <a href="https://www.instagram.com/" target="_blank">אינסטגרם</a>
+        <a href="https://www.linkedin.com/" target="_blank">לינקדאין</a>
+        <a href="mailto:example@example.com">מייל</a>
+    </div>
+
+    <div id="cv">
+        <a href="cv.pdf" download>📄 הורדת קו״ח</a>
+    </div>
+</header>
+
+<!-- כישורים -->
+<section id="skills">
+    <h2 style="text-align:center;color:#14ffec;">כישורים בסייבר</h2>
+
+    <div class="skill"><span>✔</span> זיהוי וניתוח פגיעויות (Vulnerability Assessment)</div>
+    <div class="skill"><span>✔</span> שימוש בכלי פנטסטינג: Nmap, Burp Suite, Metasploit</div>
+    <div class="skill"><span>✔</span> ניתוח לוגים ו־SOC בסיסי</div>
+    <div class="skill"><span>✔</span> עבודה עם Kali Linux</div>
+    <div class="skill"><span>✔</span> הכרות עם פרוטוקולי רשת ואבטחה</div>
+</section>
+
+<!-- קונסולת האקר -->
+<section id="terminal">
+    <div id="terminal-output">אתה יכול לכתוב כאן פקודות לדוגמה (help)</div>
+    <input id="terminal-input" placeholder="root@daniel:~$" />
+</section>
+
+<!-- טופס -->
+<section class="contact">
+    <h2 style="text-align:center;color:#14ffec;">יצירת קשר</h2>
+
+    <input type="text" id="name" placeholder="השם שלך">
+    <input type="email" id="email" placeholder="האימייל שלך">
+    <textarea id="msg" rows="5" placeholder="איך אפשר לעזור?"></textarea>
+
+    <button onclick="submitForm()">שליחה</button>
+</section>
+
+
+<script>
+/* אפקט מטריקס */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const chars = "אבגדהוזחטיכלמנסעפצקרשת01#$%&";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+let drops = [];
+
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#14ffec";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 40);
+
+
+/* אפקט טייפינג */
+const words = [
+    "חוקר סייבר בהתהוות",
+    "פנטסטר מתחיל",
+    "מוטיבציה גבוהה ללמוד",
+    "Red Team / Blue Team",
+    "מחפש את ההזדמנות הבאה"
+];
+let i = 0, j = 0, isDel = false;
+
+function type() {
+    const el = document.getElementById("typing");
+    let word = words[i];
+
+    if (!isDel) {
+        el.textContent = word.slice(0, j++);
+        if (j === word.length + 1) { isDel = true; setTimeout(type, 1200); return; }
+    } else {
+        el.textContent = word.slice(0, j--);
+        if (j === 0) { isDel = false; i = (i + 1) % words.length; }
+    }
+    setTimeout(type, isDel ? 50 : 100);
+}
+type();
+
+
+/* קונסולת האקר */
+document.getElementById("terminal-input").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        let cmd = this.value.trim();
+        let out = document.getElementById("terminal-output");
+
+        if(cmd === "help") out.innerHTML += "<br> פקודות זמינות: help , about , clear ";
+        else if(cmd === "about") out.innerHTML += "<br> דניאל — חוקר סייבר מתחיל, נחוש ומוכן ללמוד הכול.";
+        else if(cmd === "clear") out.innerHTML = "";
+        else out.innerHTML += "<br> פקודה לא מוכרת.";
+
+        this.value = "";
+        out.scrollTop = out.scrollHeight;
+    }
+});
+
+/* טופס */
+function submitForm(){
+    let n = name.value.trim();
+    let e = email.value.trim();
+    let m = msg.value.trim();
+    if(!n || !e){ alert("נא למלא שם ואימייל."); return; }
+    alert("תודה רבה! ההודעה נשלחה.");
+    name.value = ""; email.value = ""; msg.value = "";
+}
+</script>
+
+</body>
+</html>
